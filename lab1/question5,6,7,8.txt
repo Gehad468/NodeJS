@@ -1,0 +1,53 @@
+** what is the output of this code with explaination
+
+5)
+console.log( [ ]  == [ ] )
+console.log( { } == { } )
+------------
+Comparing empty arrays [] == [] ==> false
+Both empty arrays are distinct objects in memory, so they have different references. Therefore, the result is false.
+
+Comparing empty objects { } == { }==>false
+both empty objects are distinct objects in memory, so they have different references. The result is false.
+
+6)
+function main() {
+  console.log("A");
+  setTimeout(function print() {
+    console.log("B");
+  }, 0);
+  console.log("C");
+}
+main();
+--------------------
+the result 
+A C B
+The main() function is called.
+"A" is logged to the console.
+setTimeout is called with a callback function that logs "B" after a timeout of 0 milliseconds. This doesn't mean the callback will be executed immediately; it will be scheduled to run as soon as possible after the current execution context is finished.
+"C" is logged to the console.
+At this point, the current execution context is finished, so the event loop checks if there are any pending tasks. It finds the callback function from setTimeout, so it executes it, logging "B" to the console.
+
+7)
+var num = 8;
+var num = 10;
+console.log(num);
+--------------------
+var num = 10; re-declares the variable num and assigns it the value 10, effectively overriding the previous value.
+so the result= 10
+
+8)
+
+function sayHi() {
+  console.log(name);
+  console.log(age);
+  var name = 'Ayush';
+  let age = 21;
+}
+sayHi()
+----------------
+undefined.
+Uncaught ReferenceError: Cannot access 'age' before initialization
+
+It first logs the value of name. However, name is declared using var, so it's hoisted to the top of the function scope, but it's not initialized yet. Therefore, it logs undefined.
+Next, it tries to log the value of age. age is declared using let, and it's not hoisted in the same way as variables declared with var. So, when the code tries to access age before it's declared and initialized, it throws a ReferenceError.
